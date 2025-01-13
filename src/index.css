@@ -13,3 +13,36 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+/* 
+font-family: 'NanumSquareLight';
+font-family: 'NanumSquare';
+font-family: 'NanumSquareBold';
+font-family: 'NanumSquareExtraBold';
+*/
+/* 폰트 */
+@font-face {
+  font-family: 'NanumSquareLight';
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/NanumSquareL.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NanumSquare';
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/NanumSquareR.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'NanumSquareBold';
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/NanumSquareB.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'NanumSquareExtraBold';
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/NanumSquareEB.ttf') format('truetype');
+}
