@@ -19,7 +19,7 @@ const useRouter = (): hookFace => {
         children: [
           { path: '/', element: <HomePage /> },
           { path: '/about', element: <AboutPage /> },
-          { path: '/project', element: <ProjectPage /> },
+          { path: '/projects', element: <ProjectPage /> },
           { path: '/connect', element: <ConnectPage /> },
         ],
       },
