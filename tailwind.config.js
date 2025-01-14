@@ -9,6 +9,15 @@ module.exports = {
       colors: {
         pointColor: '#00b2ff',
       },
+      screens: {
+        xs: '365px', // 커스텀 브레이크포인트: 365px 이상일 때 적용
+        sm: '460px',
+        md: '640px',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1536px',
+        'max-xs': { max: '300px' }, // 커스텀 브레이크포인트: 350px 이하일 때 적용
+      },
     },
   },
   plugins: [require('tailwindcss'), require('autoprefixer')],

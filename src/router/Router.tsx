@@ -1,6 +1,4 @@
-import { BrowserRouter, Route, RouterProvider, Routes } from 'react-router-dom';
-import HomePage from '../screen/home/HomePage';
-import AboutPage from '../screen/about/AboutPage';
+import { RouterProvider } from 'react-router-dom';
 import useRouter from './hooks/useRouter';
 
 const Router = () => {
