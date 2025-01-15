@@ -7,7 +7,7 @@
   font-family: 'NanumSquare';
 }
 main {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: calc(100vh - 50px - 20px);
 }
 
