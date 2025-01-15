@@ -11,7 +11,7 @@ const HomePage = () => {
   const dispatch = useAppDispatch();
   const pdfPath = '/src/assets/etc/이은솔 프론트엔드 개발자 이력서.pdf'; // PDF 파일 경로
 
-  const titleList: string[] = ['끊임없이 성장하는', '끊임없이 도전하는', '오늘과 내일이 다른'];
+  const titleList: string[] = ['전세계에서 주목하는', '끊임없이 성장하는', '끊임없이 도전하는', '오늘과 내일이 다른'];
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const [title, setTitle] = useState<string>(titleList[currentIdx]);
 
