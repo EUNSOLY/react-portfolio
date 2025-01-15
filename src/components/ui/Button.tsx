@@ -10,8 +10,6 @@ export interface ButtonProps extends ButtonTypes {
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ onClick, className, children, ...props }, ref?: React.Ref<HTMLButtonElement>) => {
-    const classNames = [className, 'custom-btn'].filter((v) => Boolean(v)).join(' ') || undefined;
-
     return (
       <button
         ref={ref}
@@ -19,7 +17,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           `border px-4 py-2 cursor-pointer text-[12px] font-bold`,
           'hover:bg-pointColor hover:border-pointColor',
           `sm:text-sm`,
-          classNames
+          className
         )}
         onClick={onClick}
         {...props}
