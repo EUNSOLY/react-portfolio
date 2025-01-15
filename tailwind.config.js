@@ -8,6 +8,8 @@ module.exports = {
     extend: {
       colors: {
         pointColor: '#00b2ff',
+        dark: '#333',
+        boardBg: '#EAEAEA70',
       },
       screens: {
         xs: '365px', // 커스텀 브레이크포인트: 365px 이상일 때 적용
