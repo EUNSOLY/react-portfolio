@@ -1,4 +1,4 @@
-interface AboutDataType {
+export interface AboutDataType {
   title: string;
   icon: string;
   content: string[];
@@ -8,57 +8,87 @@ export const skillsData: AboutDataType[] = [
     title: 'HTML',
     icon: '',
     content: [
-      '웹 표준을 기반으로 시맨틱 마크업을 통해 웹 페이지 구조 작성 가능합니다.',
-      '적응형 / 반응형 웹사이트 제작이 가능하며 경험이 있습니다.',
-      '애니메이션과 트랜지션을 사용하여 레이아웃 효과 구현 경험이 있습니다.',
-      '외부 라이브러리 TailwindCSS , BootStrap을 사용하여 레이아웃 작성 및 스타일일링이 가능합니다.',
+      '시맨틱 태그를 활용하여 웹 페이지의 구조를 설계하고 SEO와 접근성을 개선했습니다.',
+      // 'AI 데이터를 표시하는 대시보드에서 사용자 친화적인 테이블 구조를 설계했습니다.',
     ],
   },
   {
     title: 'CSS',
     icon: '',
-    content: [],
+    content: [
+      'Flexbox와 Grid를 사용해 반응형 레이아웃을 구현했습니다.',
+      'SCSS를 사용해 CSS 코드를 모듈화하고 유지보수성을 향상시켰습니다.',
+    ],
   },
   {
     title: 'Javascript',
     icon: '',
-    content: [],
+    content: [
+      'ES6 문법을 활용해 코드 가독성과 생산성을 향상시켰습니다.',
+      'Promise와 async/await를 사용해 비동기 API 호출 로직을 구현했습니다.',
+    ],
   },
   {
     title: 'TypeScript',
     icon: '',
-    content: [],
+    content: [
+      'React 컴포넌트에 TypeScript를 적용해 컴파일 단계에서 타입 오류를 방지했습니다.',
+      '제네릭과 유틸리티 타입을 사용해 API 응답 데이터 모델을 효율적으로 정의했습니다.',
+    ],
   },
   {
     title: 'React',
     icon: '',
-    content: [],
+    content: [
+      'React의 상태 관리 기능과 Context API를 사용해 글로벌 상태를 처리했습니다.',
+      '재사용 가능한 컴포넌트를 설계해 코드 중복을 줄이고 개발 속도를 개선했습니다.',
+    ],
   },
   {
     title: 'NextJs',
     icon: '',
-    content: [],
+    content: [
+      '서버 사이드 렌더링(SSR)을 활용해 SEO와 초기 로딩 성능을 개선했습니다.',
+      '정적 사이트 생성(SSG)으로 블로그 페이지를 제작해 배포 속도를 높였습니다.',
+    ],
   },
   {
     title: 'MySql',
     icon: '',
-    content: [],
+    content: [
+      '광고 데이터를 저장하고 검색하기 위한 효율적인 데이터베이스 스키마를 설계했습니다.',
+      'JOIN 쿼리를 활용해 여러 테이블의 데이터를 효과적으로 조합했습니다.',
+    ],
   },
   {
     title: 'MongoDB',
     icon: '',
-    content: [],
+    content: [
+      'NoSQL 구조를 활용해 광고 로그 데이터를 저장하고 빠르게 조회했습니다.',
+      '복잡한 쿼리를 Aggregation Framework를 사용해 처리했습니다.',
+    ],
   },
   {
     title: 'Flutter',
     icon: '',
-    content: [],
+    content: [
+      '크로스 플랫폼 앱에서 공통 UI 컴포넌트를 제작해 개발 속도를 개선했습니다.',
+      'StatefulWidget과 Provider 패턴을 사용해 상태 관리를 효율화했습니다.',
+    ],
   },
   {
     title: 'ReduxToolkit',
     icon: '',
-    content: [],
+    content: [
+      'Redux Toolkit의 createSlice를 사용해 모듈화된 상태 관리 로직을 구현했습니다.',
+      'RTK Query를 사용해 API 요청 상태를 쉽게 처리했습니다.',
+    ],
   },
+  // {
+  //   title: 'Git',
+  //   icon: '',
+  //   content: [],
+  // },
 ];
 
 export const toolsData: AboutDataType[] = [
@@ -69,7 +99,7 @@ export const toolsData: AboutDataType[] = [
   { title: 'Lllustrator', icon: '', content: [] },
   { title: 'Figma', icon: '', content: [] },
   { title: 'Github', icon: '', content: [] },
-  { title: 'GithubDesktop', icon: '', content: [] },
+  // { title: 'GithubDesktop', icon: '', content: [] },
 ];
 
 export const educationData = [
