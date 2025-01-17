@@ -14,7 +14,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={tm(
-          `border px-4 py-2 cursor-pointer text-[12px] font-bold`,
+          `min-w-[100px]  border px-4 py-2 cursor-pointer text-[12px] font-bold`,
           'hover:bg-pointColor hover:border-pointColor',
           `sm:text-sm`,
           className
