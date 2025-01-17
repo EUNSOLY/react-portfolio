@@ -11,7 +11,7 @@ const HomePage = () => {
   const dispatch = useAppDispatch();
   const pdfPath = '/src/assets/etc/이은솔 프론트엔드 개발자 이력서.pdf'; // PDF 파일 경로
 
-  const titleList: string[] = ['전세계에서 주목하는', '끊임없이 성장하는', '끊임없이 도전하는', '오늘과 내일이 다른'];
+  const titleList: string[] = ['전세계가 주목하는', '끊임없이 성장하는', '끊임없이 도전하는', '오늘과 내일이 다른'];
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const [title, setTitle] = useState<string>(titleList[currentIdx]);
 
@@ -58,13 +58,19 @@ const HomePage = () => {
           onClick={onClickPDFDownload}
           className="max-sx:w-[120px] max-xs:min-w-[120px] max-xs:max-w-[120px] max-xs:px-0"
         >
-          이력서 다운로드
+          이력서
         </Button>
-        <Button
+        {/* <Button
           onClick={naviToProjects}
           className="max-sx:w-[120px] max-xs:min-w-[120px] max-xs:max-w-[120px] max-xs:px-0"
         >
           프로젝트 바로보기
+        </Button> */}
+        <Button
+          onClick={() => alert('준비중 입니다.')}
+          className="max-sx:w-[120px] max-xs:min-w-[120px] max-xs:max-w-[120px] max-xs:px-0"
+        >
+          경력기술서
         </Button>
       </div>
     </div>
