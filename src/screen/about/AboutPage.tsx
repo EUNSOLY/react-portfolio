@@ -53,7 +53,7 @@ const AboutPage = () => {
 
   const [selectSkillTitle, setSelectSkillTitle] = useState<string>('HTML');
   const [selectSkill, setSelectSkill] = useState<AboutDataType>({ title: '', content: [], icon: '' });
-  const [selectToolTitle, setSelectToolTitle] = useState<string>('Notion');
+  const [selectToolTitle, setSelectToolTitle] = useState<string | null>(null);
 
   useEffect(() => {
     const temp: AboutDataType = skillsData.find((skill) => skill.title === selectSkillTitle) ?? {
@@ -69,8 +69,8 @@ const AboutPage = () => {
       ref={divRef}
       className="h-full bg-boardBg rounded-md p-2 text-dark select-none  overflow-y-scroll overflow-x-hidden"
     >
-      <div className={tm('flex justify-center items-center')}>
-        {isMobile && (
+      {isMobile && (
+        <div className={tm('flex justify-center items-center')}>
           <div
             className={tm(
               'self-center',
@@ -79,98 +79,110 @@ const AboutPage = () => {
           >
             <img src={profileImage} alt="profile" className={tm('min-w-64 w-64 -mt-1', '')} />
           </div>
-        )}
-      </div>
-
-      <div className={tm('mt-6 w-full')}>
-        <p className={tm('font-bold text-xl border-b border-dark pb-2')}>
-          My Skills
-          {/* <span className="text-xs">더 알아보기</span> */}
-        </p>
-        <div className={tm('w-full flex gap-3 mt-2 flex-wrap')}>
-          {skillsData.map((data, i) => {
-            return (
-              <div
-                key={`${data.title}-${i}`}
-                className={tm(
-                  'min-w-9 w-9 h-9 min-h-9 flex justify-center items-center cursor-pointer ',
-                  selectSkillTitle === data.title && 'scale-110'
-                )}
-                onClick={() => setSelectSkillTitle(data.title)}
-              >
-                <img src={skillIcons[data.title as keyof typeof skillIcons]} alt="icon" className={tm('h-full')} />
-              </div>
-            );
-          })}
         </div>
-        {selectSkill && (
-          <div className={tm('mt-4')}>
-            <p className={tm('font-bold text-sm', 'flex items-center gap-1')}>
-              <span className={tm('text-transparent bg-dark w-[5px] h-[5px] rounded-full')} />
-              <span>{selectSkill.title}</span>
-            </p>
-            {selectSkill.content.map((content) => (
-              <p className={tm('pl-2')}>- {content}</p>
-            ))}
+      )}
+
+      <div className={tm('flex flex-col h-full')}>
+        {/* Tools */}
+        <div className={tm('w-full flex-1', isMobile && 'mt-6')}>
+          <p className={tm('font-bold text-xl border-b border-dark pb-2')}>
+            My Skills
+            {/* <span className="text-xs">더 알아보기</span> */}
+          </p>
+          <div className={tm('w-full flex gap-3 mt-2 flex-wrap')}>
+            {skillsData.map((data, i) => {
+              return (
+                <div
+                  key={`${data.title}-${i}`}
+                  className={tm(
+                    'min-w-9 w-9 h-9 min-h-9 flex justify-center items-center cursor-pointer ',
+                    selectSkillTitle === data.title && 'scale-110'
+                  )}
+                  onMouseMove={() => setSelectSkillTitle(data.title)}
+                  // onClick={() => setSelectSkillTitle(data.title)}
+                >
+                  <img src={skillIcons[data.title as keyof typeof skillIcons]} alt="icon" className={tm('h-full')} />
+                </div>
+              );
+            })}
           </div>
-        )}
-      </div>
-
-      <div className={tm('mt-6 w-full')}>
-        <p className={tm('font-bold text-xl border-b border-dark pb-2')}>My Tools</p>
-        <div className={tm('flex gap-3 mt-2')}>
-          {toolsData.map((data, i) => {
-            return (
-              <div
-                key={`${data.title}-${i}`}
-                className={tm(
-                  'min-w-9 w-9 h-9 min-h-9 flex justify-center items-center cursor-pointer',
-                  selectToolTitle === data.title && 'scale-110'
-                )}
-                onClick={() => setSelectToolTitle(data.title)}
-              >
-                <img src={skillIcons[data.title as keyof typeof skillIcons]} alt="icon" className={tm('h-full')} />
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className={tm('mt-12 w-full')}>
-        <p className={tm('font-bold text-xl border-b border-dark pb-2')}>My Certificate</p>
-        <div className={tm('flex gap-6')}>
-          {certificateData.map((data, i) => {
-            return (
-              <div key={`${data.title}-${i}`} className={tm('flex flex-col py-2 text-xs')}>
-                <p className={tm('font-bold text-sm', 'flex items-center gap-1')}>
-                  <span className={tm('text-transparent bg-dark w-[5px] h-[5px] rounded-full')} />
-                  <span>{data.title}</span>
+          {!isMobile && selectSkill && (
+            <div className={tm('mt-4 min-h-20')}>
+              <p className={tm('font-bold text-sm', 'flex items-center gap-1')}>
+                <span className={tm('text-transparent bg-dark w-[5px] h-[5px] rounded-full')} />
+                <span>{selectSkill.title}</span>
+              </p>
+              {selectSkill.content.map((content: string, i: number) => (
+                <p key={`skillContent-${i}`} className={tm('pl-2')}>
+                  - {content}
                 </p>
-                <p className="text-[10px] pl-2">{data.date}</p>
-              </div>
-            );
-          })}
+              ))}
+            </div>
+          )}
         </div>
-      </div>
 
-      <div className={tm('mt-3 w-full')}>
-        <p className={tm('font-bold text-xl border-b border-dark pb-2')}>My Education</p>
-        <div className={tm('flex gap-6')}>
-          {educationData.map((data, i) => {
-            return (
-              <div key={`${data.title}-${i}`} className={tm('flex flex-col gap-2 py-2 text-xs')}>
-                <p className={tm('font-bold text-sm', 'flex items-center gap-1')}>
-                  <span className={tm('text-transparent bg-dark w-[5px] h-[5px] rounded-full')} />
-                  <span>{data.title}</span>
-                </p>
-                <p className={'whitespace-pre-wrap pl-2'}>{data.content}</p>
-                <p className="text-[10px] pl-2">{data.date}</p>
-              </div>
-            );
-          })}
+        {/* Tools */}
+        <div className={tm('mt-6 w-full flex-1')}>
+          <p className={tm('font-bold text-xl border-b border-dark pb-2')}>My Tools</p>
+          <div className={tm('flex gap-3 mt-2')}>
+            {toolsData.map((data, i) => {
+              return (
+                <div
+                  key={`${data.title}-${i}`}
+                  className={tm(
+                    'min-w-9 w-9 h-9 min-h-9 flex justify-center items-center cursor-pointer',
+                    selectToolTitle === data.title && 'scale-110'
+                  )}
+                  onMouseMove={() => setSelectToolTitle(data.title)}
+                  onMouseLeave={() => setSelectToolTitle(null)}
+                  // onClick={() => }
+                >
+                  <img src={skillIcons[data.title as keyof typeof skillIcons]} alt="icon" className={tm('h-full')} />
+                  {/* {selectToolTitle && <p className={tm('absolute')}> {data.title}</p>} */}
+                </div>
+              );
+            })}
+          </div>
         </div>
+
+        {/* Certificate */}
+        <div className={tm('mt-12 w-full')}>
+          <p className={tm('font-bold text-xl border-b border-dark pb-2')}>My Certificate</p>
+          <div className={tm('flex gap-6')}>
+            {certificateData.map((data, i) => {
+              return (
+                <div key={`${data.title}-${i}`} className={tm('flex flex-col py-2 text-xs')}>
+                  <p className={tm('font-bold text-sm', 'flex items-center gap-1')}>
+                    <span className={tm('text-transparent bg-dark w-[5px] h-[5px] rounded-full')} />
+                    <span>{data.title}</span>
+                  </p>
+                  <p className="text-[10px] pl-2">{data.date}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Education */}
+        <div className={tm('mt-3 w-full')}>
+          <p className={tm('font-bold text-xl border-b border-dark pb-2')}>My Education</p>
+          <div className={tm('flex gap-6')}>
+            {educationData.map((data, i) => {
+              return (
+                <div key={`${data.title}-${i}`} className={tm('flex flex-col gap-2 py-2 text-xs')}>
+                  <p className={tm('font-bold text-sm', 'flex items-center gap-1')}>
+                    <span className={tm('text-transparent bg-dark w-[5px] h-[5px] rounded-full')} />
+                    <span>{data.title}</span>
+                  </p>
+                  <p className={'whitespace-pre-wrap pl-2'}>{data.content}</p>
+                  <p className="text-[10px] pl-2">{data.date}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        {!isMobile && <img src={profileImage} alt="profile" className={tm('flex w-80 fixed bottom-0 right-0')} />}
       </div>
-      {!isMobile && <img src={profileImage} alt="profile" className={tm('flex w-80 fixed bottom-0 right-0')} />}
     </div>
   );
 };
