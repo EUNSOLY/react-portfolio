@@ -14,9 +14,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         className={tm(
-          `min-w-[100px]  border px-4 py-2 cursor-pointer text-[12px] font-bold`,
-          'hover:bg-pointColor hover:border-pointColor',
-          `sm:text-sm`,
+          `flex items-center`,
+          `px-8 py-3`,
+          `bg-blue-600 rounded-full font-semibold`,
+          `transition-colors duration-200`,
+          `hover:bg-blue-700`,
+          `max-sx:px-0 max-sx:py-0 max-sx:w-[110px] max-sx:h-[30px] max-sx:justify-center max-sx:text-xs`, // 일반 모바일 보다 작을 때
           className
         )}
         onClick={onClick}
