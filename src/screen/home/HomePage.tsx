@@ -5,6 +5,7 @@ import { useAppDispatch } from '../../utils/store';
 import { setSelectMenuName } from '../../data/menuSlice';
 import Button from '../../components/ui/Button';
 import axios from 'axios';
+import { IconArrowRight, IconChevronCompactRight, IconChevronDown, IconFileDownload } from '@tabler/icons-react';
 
 const HomePage = () => {
   const navi = useNavigation();
@@ -40,38 +41,36 @@ const HomePage = () => {
     dispatch(setSelectMenuName('PROJECTS'));
     navi.naviToProjects();
   };
+
   return (
-    <div className={tm('h-full flex flex-col justify-center items-center gap-8 select-none')}>
-      <div className="grid gap-2 text-center">
-        <h2 className={tm('text-base', 'sm:text-3xl')}>안녕하세요!</h2>
-        <p
-          className={tm('text-lg font-bold text-pointColor cursor-pointer', 'sm:text-4xl')}
-          onClick={onClickChangeTitle}
+    <div className={tm('h-full flex flex-col justify-center items-center gap-10 select-none')}>
+      <div className={tm(`text-center grid gap-1`, `md:gap-6`)}>
+        <h2
+          className={tm(
+            `bg-gradient-to-r from-pointColor to-purple-500`,
+            `bg-clip-text text-transparent`,
+            `text-lg font-bold`,
+            `md:text-6xl `
+          )}
         >
-          {title}
-        </p>
-        <p className={tm('text-base', 'sm:text-3xl')}>프론트엔드 개발자 이은솔입니다.</p>
+          Front Developer
+        </h2>
+
+        <p className={tm(`text-base font-semibold`, `md:text-3xl`)}>안녕하세요 이은솔입니다.</p>
       </div>
 
-      <div className={tm('flex gap-2 flex-wrap px-2', 'max-xs:justify-center')}>
-        <Button
-          onClick={onClickPDFDownload}
-          className="max-sx:w-[120px] max-xs:min-w-[120px] max-xs:max-w-[120px] max-xs:px-0"
-        >
-          이력서
+      <div className={tm(`flex gap-4 justify-center`, `max-sx:flex-wrap`)}>
+        <Button onClick={onClickPDFDownload} className={tm(`gap-1`)}>
+          {window.innerWidth >= 480 && <IconFileDownload />}
+          이력서 다운로드
         </Button>
-        {/* <Button
-          onClick={naviToProjects}
-          className="max-sx:w-[120px] max-xs:min-w-[120px] max-xs:max-w-[120px] max-xs:px-0"
-        >
-          프로젝트 바로보기
-        </Button> */}
-        <Button
-          onClick={() => alert('준비중 입니다.')}
-          className="max-sx:w-[120px] max-xs:min-w-[120px] max-xs:max-w-[120px] max-xs:px-0"
-        >
-          경력기술서
+        <Button onClick={() => navi.naviToProjects()} className={tm(`bg-purple-600 gap-1`, `hover:bg-purple-700`)}>
+          프로젝트 보기
+          {/* {window.innerWidth >= 480 && <IconArrowRight size={14} />} */}
         </Button>
+      </div>
+      <div className={tm(`absolute bottom-8 animate-bounce`, 'cursor-pointer')} onClick={() => navi.naviToAbout()}>
+        <IconChevronDown className="w-8 h-8" />
       </div>
     </div>
   );
