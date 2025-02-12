@@ -13,14 +13,14 @@ module.exports = {
       },
       screens: {
         // 커스텀 브레이크포인트 이상
-        sm: '481px', //모바일
+        sm: '523px', //모바일
         md: '769px', //아이패드 새로
         lg: '1025px', // 아이패드 가로
         xl: '1280px', // 데스크탑
 
         // 커스텀 브레이크포인트 이하
-        'max-sx': { max: '350px' },
-        'max-sm': { max: '480px' },
+        'max-sx': { max: '300px' },
+        'max-sm': { max: '524px' },
         'max-md': { max: '768px' },
         'max-lg': { max: '1024px' },
       },
