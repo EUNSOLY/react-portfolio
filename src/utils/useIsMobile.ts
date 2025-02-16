@@ -10,8 +10,8 @@ export const useIsMobile = () => {
       // 정규식 모바일 장치 키워드 포함 체크
       const mobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
       setIsMobile(mobile || ('ontouchstart' in window && window.innerWidth <= 1024) || window.innerWidth <= 524);
-      console.log(window.navigator, 'window');
-      console.log(window, 'window');
+      // console.log(window.navigator, 'window');
+      // console.log(window, 'window');
     };
 
     checkIsMobile();
