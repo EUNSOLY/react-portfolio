@@ -6,6 +6,8 @@
   padding: 1rem;
   gap: 1rem;
   user-select: none;
+  // 미디어 쿼리 추가
+
   .side-bar {
     border-right: 1px solid #ccc;
     display: flex;
@@ -144,6 +146,55 @@
           background-color: #00b2ff;
           color: white;
         }
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    align-content: start;
+    padding: 0.5rem;
+    .side-bar {
+      border-right: none;
+      // border-bottom: 1px solid #ccc;
+      padding-right: 0;
+      padding-bottom: 0;
+      .side-menu {
+        padding: 0.75rem;
+        font-size: 1rem;
+      }
+    }
+
+    .content {
+      padding: 1rem;
+
+      .mokup-con {
+        max-width: 100%;
+        height: 250px;
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+      }
+
+      .link-con a {
+        font-size: 1.25rem;
+      }
+
+      .tech-con li {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .content {
+      .mokup-con {
+        height: 200px;
+      }
+
+      .project-title {
+        font-size: 1.25rem;
       }
     }
   }

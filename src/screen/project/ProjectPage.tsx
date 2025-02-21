@@ -27,38 +27,56 @@ const ProjectPage = () => {
 
   // 글자 수가 두 줄 이상인지를 체크하는 함수
   // FIXME : 현재 넓이값 조정으로 디스크립션 엘리스 처리 하기
-  // useEffect(() => {
-  //   const descriptionCheck = () => {
-  //     if (descRef.current) {
-  //       // 높이를 측정해서, 두 줄 이상인지 확인
-  //       console.log(descRef.current, 'descRef.current');
-  //       console.log(descRef.current.scrollHeight, 'scroll');
-  //       console.log(descRef.current.clientHeight, 'clientHeight');
-  //       const isOverflowing = descRef.current.scrollHeight > descRef.current.clientHeight;
-  //       console.log(isOverflowing, 'isOverflowing');
-  //       setIsLongText(isOverflowing);
-  //     }
-  //   };
-  //   descriptionCheck();
-  //   window.addEventListener('resize', descriptionCheck);
-  // }, [descRef.current, selectProject?.description]);
+  useEffect(() => {
+    const checkTextOverflow = () => {
+      if (descRef.current) {
+        const isOverflowing = descRef.current.scrollHeight > descRef.current.clientHeight;
+        setIsLongText(isOverflowing);
+      }
+    };
+
+    checkTextOverflow();
+    window.addEventListener('resize', checkTextOverflow);
+
+    return () => {
+      window.removeEventListener('resize', checkTextOverflow);
+    };
+  }, [selectProject?.description]);
 
   return (
     <div className={tm(`${styles.projects}`)}>
       <ul className={tm(`${styles['side-bar']}`)}>
-        {projects.map((project) => (
-          <li
-            key={project.title}
-            className={tm(
-              `${styles['side-menu']}`,
-              selectProject && project.title === selectProject.title && styles['action']
-            )}
-            onClick={() => changeProjectHandler(project)}
+        {isMobile ? (
+          <select
+            value={selectProject?.title}
+            onChange={(e) => {
+              const selected = projects.find((p) => p.title === e.target.value);
+              if (selected) changeProjectHandler(selected);
+            }}
+            className={tm('w-full p-2 rounded-md bg-gray-800 text-white')}
           >
-            {project.title}
-          </li>
-        ))}
+            {projects.map((project) => (
+              <option key={project.title} value={project.title}>
+                {project.title}
+              </option>
+            ))}
+          </select>
+        ) : (
+          projects.map((project) => (
+            <li
+              key={project.title}
+              className={tm(
+                `${styles['side-menu']}`,
+                selectProject && project.title === selectProject.title && styles['action']
+              )}
+              onClick={() => changeProjectHandler(project)}
+            >
+              {project.title}
+            </li>
+          ))
+        )}
       </ul>
+
       {selectProject && (
         <div className={tm(`${styles.content}`)}>
           <div className={tm(`${styles['mokup-con']}`)}>
