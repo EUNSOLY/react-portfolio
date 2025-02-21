@@ -43,34 +43,86 @@ const HomePage = () => {
   };
 
   return (
-    <div className={tm('h-full flex flex-col justify-center items-center gap-10 select-none')}>
-      <div className={tm(`text-center grid gap-1`, `md:gap-6`)}>
-        <h2
-          className={tm(
-            `bg-gradient-to-r from-pointColor to-purple-500`,
-            `bg-clip-text text-transparent`,
-            `text-lg font-bold`,
-            `md:text-6xl `
-          )}
+    <div
+      className={tm(
+        'min-h-screen',
+        'flex flex-col justify-center items-center',
+        'px-4 sm:px-6 md:px-8',
+        'py-8 sm:py-12',
+        'select-none',
+        'relative' // 하단 화살표를 위한 relative 포지셔닝
+      )}
+    >
+      {/* Main Content */}
+      <div
+        className={tm(
+          'text-center',
+          'space-y-4 sm:space-y-6 md:space-y-8',
+          'max-w-[95%] sm:max-w-[85%] md:max-w-2xl',
+          'mb-8 sm:mb-12'
+        )}
+      >
+        {/* Title Section */}
+        <div className={tm('space-y-2 sm:space-y-4 md:space-y-6', 'animate-fadeIn')}>
+          <h2
+            className={tm(
+              'text-2xl sm:text-4xl md:text-6xl',
+              'font-bold',
+              'bg-gradient-to-r from-pointColor to-purple-500',
+              'bg-clip-text text-transparent',
+              'transition-all duration-300'
+            )}
+          >
+            Front Developer
+          </h2>
+
+          <div
+            className={tm('space-y-2 sm:space-y-3', 'cursor-pointer', 'transition-all duration-300')}
+            onClick={onClickChangeTitle}
+          >
+            {/* <p className={tm('text-lg sm:text-2xl md:text-3xl', 'font-semibold')}>{title}</p> */}
+            <p className={tm('text-base sm:text-xl md:text-4xl ', 'font-semibold')}>안녕하세요 이은솔입니다.</p>
+          </div>
+        </div>
+
+        {/* Buttons */}
+        <div
+          className={tm('flex flex-col sm:flex-row', 'gap-3 sm:gap-4', 'justify-center items-center', 'mt-6 sm:mt-8')}
         >
-          Front Developer
-        </h2>
+          <Button
+            onClick={onClickPDFDownload}
+            className={tm(
+              'w-full sm:w-auto',
+              'px-4 py-2 sm:px-6 sm:py-3',
+              'text-sm sm:text-base',
+              'flex items-center justify-center gap-2'
+            )}
+          >
+            <IconFileDownload className="w-4 h-4 sm:w-5 sm:h-5" />
+            이력서 다운로드
+          </Button>
 
-        <p className={tm(`text-base font-semibold`, `md:text-3xl`)}>안녕하세요 이은솔입니다.</p>
+          <Button
+            onClick={naviToProjects}
+            className={tm(
+              'w-full sm:w-auto',
+              'px-4 py-2 sm:px-6 sm:py-3',
+              'text-sm sm:text-base',
+              'bg-purple-600 hover:bg-purple-700',
+              'flex items-center justify-center gap-2'
+            )}
+          >
+            프로젝트 보기
+          </Button>
+        </div>
       </div>
 
-      <div className={tm(`flex gap-4 justify-center`, `max-sx:flex-wrap`)}>
-        <Button onClick={onClickPDFDownload} className={tm(`gap-1`)}>
-          {window.innerWidth >= 480 && <IconFileDownload />}
-          이력서 다운로드
-        </Button>
-        <Button onClick={() => navi.naviToProjects()} className={tm(`bg-purple-600 gap-1`, `hover:bg-purple-700`)}>
-          프로젝트 보기
-          {/* {window.innerWidth >= 480 && <IconArrowRight size={14} />} */}
-        </Button>
-      </div>
-      <div className={tm(`absolute bottom-8 animate-bounce`, 'cursor-pointer')} onClick={() => navi.naviToAbout()}>
-        <IconChevronDown className="w-8 h-8" />
+      {/* Bottom Arrow */}
+      <div
+        className={tm('absolute bottom-8', 'animate-bounce cursor-pointer', 'transition-all duration-300')}
+        onClick={() => navi.naviToAbout()}
+      >
+        <IconChevronDown className={tm('w-6 h-6 sm:w-8 sm:h-8', 'text-gray-400 hover:text-white')} />
       </div>
     </div>
   );
