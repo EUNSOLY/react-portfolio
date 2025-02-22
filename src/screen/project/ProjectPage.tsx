@@ -6,6 +6,7 @@ import { IconBrandGithub, IconCirclesRelation } from '@tabler/icons-react';
 import styles from './style/projects.module.scss';
 import emptyImage from '../../assets/image/readyimageIcon.png';
 import { projectData } from '../../data/mock/mockupData';
+import Select from '../../components/ui/Select';
 
 const ProjectPage = () => {
   const isMobile = useIsMobile();
@@ -14,6 +15,21 @@ const ProjectPage = () => {
   const [isEllipsis, setIsEllipsis] = useState<boolean>(false);
   const descRef = useRef<HTMLParagraphElement | null>(null);
   const [isLongText, setIsLongText] = useState(false);
+
+  const [isProjetMobile, setIsProjectMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      if (window.innerWidth <= 768) {
+        setIsProjectMobile(true);
+      } else {
+        setIsProjectMobile(false);
+      }
+    };
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   useEffect(() => {
     setProjects(projectData);
@@ -45,22 +61,16 @@ const ProjectPage = () => {
 
   return (
     <div className={tm(`${styles.projects}`)}>
+      {/* */}
       <ul className={tm(`${styles['side-bar']}`)}>
-        {isMobile ? (
-          <select
-            value={selectProject?.title}
-            onChange={(e) => {
-              const selected = projects.find((p) => p.title === e.target.value);
-              if (selected) changeProjectHandler(selected);
-            }}
-            className={tm('w-full p-2 rounded-md bg-gray-800 text-white')}
-          >
-            {projects.map((project) => (
-              <option key={project.title} value={project.title}>
-                {project.title}
-              </option>
-            ))}
-          </select>
+        {isMobile || isProjetMobile ? (
+          <Select<ProjectType>
+            menuList={projects}
+            setState={setSelectProject}
+            defaultValue={projects[0]}
+            getLabel={(project) => project.title} // ProjectType의 title을 label로 사용
+            getValue={(project) => project.title} // ProjectType의 title을 value로 사용
+          />
         ) : (
           projects.map((project) => (
             <li

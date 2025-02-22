@@ -19,7 +19,8 @@ const ConnectPage = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:your.email@example.com?subject=Contact from ${emailForm.name}&body=${emailForm.message}%0D%0A%0D%0AFrom: ${emailForm.email}`;
+    // FIXME : 메일을 바로 보낼 수 있는 로직 추가 예정
+    const mailtoLink = `mailto:dmsthf9596@gmail.com?subject=Contact from ${emailForm.name}&body=${emailForm.message}%0D%0A%0D%0AFrom: ${emailForm.email}`;
     window.location.href = mailtoLink;
   };
 
@@ -48,22 +49,11 @@ const ConnectPage = () => {
   ];
 
   return (
-    <div
-      className={tm(
-        'min-h-screen', // height: 100% 대신 min-h-screen 사용
-        'flex flex-col items-center justify-center',
-        'px-4 py-8 md:px-8',
-        'select-none',
-        'max-sm:py-16' // 모바일에서 더 큰 패딩
-      )}
-    >
+    <div className={tm('h-full', 'flex flex-col items-center justify-center', 'select-none')}>
       <h2
         className={tm(
           'text-3xl sm:text-4xl md:text-5xl font-bold', // 반응형 폰트 크기
-          'mb-8 sm:mb-12', // 반응형 마진
-          // 'bg-gradient-to-r from-[#00b2ff] to-purple-500',
-          // 'bg-clip-text text-transparent',
-          'text-center px-4' // 텍스트가 잘리지 않도록 패딩 추가
+          'text-center px-4 mb-8'
         )}
       >
         함께할 기회를 찾고 있습니다!
@@ -75,18 +65,17 @@ const ConnectPage = () => {
           'max-w-[95%] sm:max-w-[85%] md:max-w-2xl', // 반응형 최대 너비
           'bg-white/5 backdrop-blur-sm',
           'rounded-2xl shadow-lg',
-          'p-4 sm:p-6 md:p-8', // 반응형 패딩
+          'p-4 sm:p-6 md:p-5', // 반응형 패딩
           'space-y-4 sm:space-y-6' // 반응형 간격
         )}
       >
-        {/* Contact Info */}
         <div className="space-y-3 sm:space-y-4">
           {contactInfo.map((item, index) => (
             <div
               key={index}
               className={tm(
                 'flex items-center gap-3 sm:gap-4',
-                'p-3 sm:p-4 rounded-xl',
+                'rounded-xl',
                 'transition-all duration-300',
                 'hover:bg-white/5',
                 'max-sm:flex-wrap' // 모바일에서 필요시 줄바꿈
@@ -101,8 +90,7 @@ const ConnectPage = () => {
           ))}
         </div>
 
-        {/* Email Form */}
-        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+        <form onSubmit={handleSubmit} className="grid gap-3 sm:gap-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <input
               type="text"
@@ -171,7 +159,7 @@ const ConnectPage = () => {
         </form>
       </div>
 
-      <div className={tm('flex gap-4 sm:gap-6 mt-6 sm:mt-8', 'text-[#00b2ff]')}>
+      <div className={tm('flex gap-4 sm:gap-6 mt-2', 'text-[#00b2ff]')}>
         {socialLinks.map((link, index) => (
           <a
             key={index}

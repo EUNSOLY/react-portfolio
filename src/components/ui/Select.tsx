@@ -5,20 +5,29 @@ import styles from './style/select.module.scss';
 interface SelectProps<T> {
   menuList: T[];
   setState: React.Dispatch<React.SetStateAction<T | null>>;
-  defaultValue?: T;
+  defaultValue: T;
   getLabel: (item: T) => string; // 각 아이템에서 표시할 텍스트를 추출하는 함수
   getValue: (item: T) => string | number; // 각 아이템의 고유 값을 추출하는 함수
 }
 
 const Select = <T,>({ menuList, setState, defaultValue, getLabel, getValue }: SelectProps<T>) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<T | null>(defaultValue || menuList[0] || null);
+  const [selectedItem, setSelectedItem] = useState<T | null>(null);
+
+  // 초기값 설정을 useEffect로 이동
+  useEffect(() => {
+    if (defaultValue) {
+      setSelectedItem(defaultValue);
+    } else if (menuList.length > 0) {
+      setSelectedItem(menuList[0]);
+    }
+  }, [defaultValue, menuList]);
 
   useEffect(() => {
     if (selectedItem) {
       setState(selectedItem);
     }
-  }, [selectedItem]);
+  }, [selectedItem, setState]);
 
   const handleChangeSelectValue = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, item: T) => {
     e.stopPropagation();
