@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@reduxjs/toolkit": "^2.5.0",
     "@tabler/icons-react": "^3.30.0",
     "@testing-library/jest-dom": "^5.14.1",

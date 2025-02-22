@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { tm } from '../../utils/twMerge';
 import {
   IconMail,
@@ -9,19 +9,41 @@ import {
   IconSend,
   IconSchool,
 } from '@tabler/icons-react';
-
+import emailjs from '@emailjs/browser';
 const ConnectPage = () => {
+  const formRef = useRef<HTMLFormElement>(null);
   const [emailForm, setEmailForm] = useState({
     name: '',
     email: '',
     message: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formRef.current) {
+      console.error('formRef가 존재하지 않습니다.');
+      return;
+    }
+
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_SERVICE_ID as string,
+        process.env.REACT_APP_TEMPLATE_KEY as string,
+        formRef.current,
+        process.env.REACT_APP_PUBLIC_KEY as string
+      )
+      .then(
+        (result) => {
+          console.log('결과', result.text);
+          alert('이메일 전송이 완료됬습니다 감사힙니다:)');
+        },
+        (error) => {
+          console.log('에러', error.text);
+        }
+      );
     // FIXME : 메일을 바로 보낼 수 있는 로직 추가 예정
-    const mailtoLink = `mailto:dmsthf9596@gmail.com?subject=Contact from ${emailForm.name}&body=${emailForm.message}%0D%0A%0D%0AFrom: ${emailForm.email}`;
-    window.location.href = mailtoLink;
+    // const mailtoLink = `mailto:dmsthf9596@gmail.com?subject=Contact from ${emailForm.name}&body=${emailForm.message}%0D%0A%0D%0AFrom: ${emailForm.email}`;
+    // window.location.href = mailtoLink;
   };
 
   const contactInfo = [
@@ -90,11 +112,12 @@ const ConnectPage = () => {
           ))}
         </div>
 
-        <form onSubmit={handleSubmit} className="grid gap-3 sm:gap-4">
+        <form ref={formRef} onSubmit={handleSubmit} className="grid gap-3 sm:gap-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
             <input
               type="text"
-              placeholder="이름"
+              name="from_name"
+              placeholder="당사의 이름을 입력해주세요"
               className={tm(
                 'w-full p-2 sm:p-3 rounded-lg',
                 'bg-white/10',
@@ -110,7 +133,8 @@ const ConnectPage = () => {
             />
             <input
               type="email"
-              placeholder="이메일"
+              name="from_email"
+              placeholder="당사의 메일을 입력해주세요"
               className={tm(
                 'w-full p-2 sm:p-3 rounded-lg',
                 'bg-white/10',
@@ -127,6 +151,7 @@ const ConnectPage = () => {
           </div>
           <textarea
             placeholder="내용을 입력해주세요."
+            name="content"
             rows={4}
             className={tm(
               'w-full p-2 sm:p-3 rounded-lg',
