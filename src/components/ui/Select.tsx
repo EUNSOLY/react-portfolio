@@ -23,11 +23,11 @@ const Select = <T,>({ menuList, setState, defaultValue, getLabel, getValue }: Se
     }
   }, [defaultValue, menuList]);
 
-  useEffect(() => {
-    if (selectedItem) {
-      setState(selectedItem);
-    }
-  }, [selectedItem, setState]);
+  //   useEffect(() => {
+  //     if (selectedItem) {
+  //       setState(selectedItem);
+  //     }
+  //   }, [selectedItem, setState]);
 
   const handleChangeSelectValue = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, item: T) => {
     e.stopPropagation();
@@ -37,10 +37,7 @@ const Select = <T,>({ menuList, setState, defaultValue, getLabel, getValue }: Se
   };
 
   return (
-    <div
-      className={tm(`${styles['select-con']}  ${isOpen ? styles.on : ''}`)}
-      onClick={() => setIsOpen((prev) => !prev)}
-    >
+    <div className={tm(`${styles['select-con']}`)} onClick={() => setIsOpen((prev) => !prev)}>
       <label className={tm(`${styles.label}`)}>{selectedItem ? getLabel(selectedItem) : '선택하세요'}</label>
       <ul className={tm(`${styles.list} ${isOpen ? styles.on : ''}`)}>
         {menuList.map((item) => (

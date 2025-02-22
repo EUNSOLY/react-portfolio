@@ -61,7 +61,6 @@ const ProjectPage = () => {
 
   return (
     <div className={tm(`${styles.projects}`)}>
-      {/* */}
       <ul className={tm(`${styles['side-bar']}`)}>
         {isMobile || isProjetMobile ? (
           <Select<ProjectType>
