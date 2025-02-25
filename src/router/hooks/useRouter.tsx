@@ -23,8 +23,8 @@ const useRouter = (): hookFace => {
           { path: '/connect', element: <ConnectPage /> },
         ],
       },
-    ],
-    { basename: '/eunsoly' }
+    ]
+    // { basename: `/${process.env.PUBLIC_URL}` }
   );
 
   return {
