@@ -1,8 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
-import profileImage from '../../assets/image/profileImage.png';
-import profile from '../../assets/image/profile.jpeg';
-import { AboutDataType, certificateData, educationData, skillsData, toolsData } from '../../data/mock/mockupData';
+import { certificateData, educationData, skillsData, toolsData } from '../../data/mock/mockupData';
 import { tm } from '../../utils/twMerge';
+import profile from '../../assets/image/profile.jpeg';
 import useWindowDimensions from '../../utils/useWindowDimensions';
 import javascriptIcon from '../../assets/image/javascriptIcon.svg';
 import typescriptIcon from '../../assets/image/typescriptIcon.svg';
@@ -23,7 +21,6 @@ import githubIcon from '../../assets/image/githubIcon.svg';
 import dbeaver from '../../assets/image/dbeaver.svg';
 
 const AboutPage = () => {
-  const divRef = useRef<HTMLDivElement | null>(null);
   const { height, width, isMobile } = useWindowDimensions();
 
   const skillIcons = {
@@ -64,9 +61,15 @@ const AboutPage = () => {
               'bg-clip-text text-transparent'
             )}
           >
-            Front-end Developer
+            성장형 개발자 {isMobile && <br />}이은솔입니다
           </h2>
-          <p className="text-gray-300 text-lg">안녕하세요, 끊임없이 성장하는 개발자 이은솔입니다.</p>
+
+          <p className={tm(`text-gray-300 text-lg`, isMobile && 'text-sm')}>
+            새로운 도전을 두려워하지 않고,{isMobile && <br />}
+            사용자 중심의 UI/UX를 설계하며,
+            <br />
+            클린 코드로 소통하기 위해 끊임없이 노력하는 개발자입니다.
+          </p>
         </div>
       </div>
 

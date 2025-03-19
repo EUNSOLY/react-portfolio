@@ -50,7 +50,6 @@ const HomePage = () => {
           'mb-8 sm:mb-12'
         )}
       >
-        {/* Title Section */}
         <div className={tm('space-y-2 sm:space-y-4 md:space-y-6', 'animate-fadeIn')}>
           <h2
             className={tm(
@@ -66,9 +65,14 @@ const HomePage = () => {
           </h2>
 
           <div className={tm('space-y-2 sm:space-y-3', 'cursor-pointer', 'transition-all duration-300')}>
-            <p className={tm('text-base sm:text-xl md:text-4xl ', 'font-semibold', isMobile && ' text-sm')}>
-              안녕하십니까 <span className={tm(isMobile ? 'text-xs' : 'text-3xl')}>🙂</span> <br />
-              <span className="mt-1 flex">프론트엔드개발자 이은솔입니다.</span>
+            <p
+              className={tm('text-base sm:text-xl md:text-4xl ', 'font-semibold', isMobile && ' text-sm')}
+              style={{
+                lineHeight: isMobile ? '' : '2.9rem',
+              }}
+            >
+              안녕하세요 <span className={tm(isMobile ? 'text-xs' : 'text-3xl')}>🙂</span> <br />
+              저는 어떤 개발자 일까요?
             </p>
           </div>
         </div>
