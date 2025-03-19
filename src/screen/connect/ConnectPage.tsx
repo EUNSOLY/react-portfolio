@@ -10,8 +10,10 @@ import {
   IconSchool,
 } from '@tabler/icons-react';
 import emailjs from '@emailjs/browser';
+import useWindowDimensions from '../../utils/useWindowDimensions';
 const ConnectPage = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  const { height, width, isMobile } = useWindowDimensions();
   const [emailForm, setEmailForm] = useState({
     name: '',
     email: '',
@@ -35,13 +37,13 @@ const ConnectPage = () => {
       .then(
         (result) => {
           console.log('결과', result.text);
-          alert('이메일 전송이 완료됬습니다 감사힙니다:)');
+          alert('소중한 제안 감사합니다! 빠르게 연락드리겠습니다.');
         },
         (error) => {
           console.log('에러', error.text);
         }
       );
-    // FIXME : 메일을 바로 보낼 수 있는 로직 추가 예정
+    // NOTE : 메일창 생성
     // const mailtoLink = `mailto:dmsthf9596@gmail.com?subject=Contact from ${emailForm.name}&body=${emailForm.message}%0D%0A%0D%0AFrom: ${emailForm.email}`;
     // window.location.href = mailtoLink;
   };
@@ -61,11 +63,12 @@ const ConnectPage = () => {
 
   const socialLinks = [
     {
-      icon: <IconBrandGithub className="w-8 h-8" />,
+      icon: <IconBrandGithub className={tm(isMobile ? '' : `w-8 h-8`)} />,
       url: 'https://github.com/EUNSOLY',
     },
     {
-      icon: <IconSchool className="w-8 h-8" />,
+      // isMobile ? 'w-8 h-8' : 'w-12'
+      icon: <IconSchool className={tm(isMobile ? '' : `w-8 h-8`)} />,
       url: 'https://soly-log.tistory.com/',
     },
   ];
@@ -74,8 +77,9 @@ const ConnectPage = () => {
     <div className={tm('h-full', 'flex flex-col items-center justify-center', 'select-none')}>
       <h2
         className={tm(
-          'text-3xl sm:text-4xl md:text-5xl font-bold', // 반응형 폰트 크기
-          'text-center px-4 mb-8'
+          'text-center px-4 mb-10',
+          'text-2xl sm:text-4xl md:text-5xl font-bold',
+          isMobile && 'text-lg mb-5'
         )}
       >
         함께할 기회를 찾고 있습니다!
@@ -106,7 +110,7 @@ const ConnectPage = () => {
               <span className="text-[#00b2ff] min-w-[24px]">{item.icon}</span>
               <div className="flex-1">
                 <p className="text-sm text-gray-400">{item.label}</p>
-                <p className="text-base sm:text-lg text-white break-all">{item.value}</p>
+                <p className={tm(`text-base sm:text-lg text-white break-all`, isMobile && 'text-xs')}>{item.value}</p>
               </div>
             </div>
           ))}
@@ -125,7 +129,8 @@ const ConnectPage = () => {
                 'text-white placeholder-gray-400',
                 'focus:outline-none focus:border-[#00b2ff]',
                 'transition duration-300',
-                'text-sm sm:text-base'
+                'text-sm sm:text-base',
+                isMobile && 'placeholder:text-xs'
               )}
               value={emailForm.name}
               onChange={(e) => setEmailForm({ ...emailForm, name: e.target.value })}
@@ -142,7 +147,8 @@ const ConnectPage = () => {
                 'text-white placeholder-gray-400',
                 'focus:outline-none focus:border-[#00b2ff]',
                 'transition duration-300',
-                'text-sm sm:text-base'
+                'text-sm sm:text-base',
+                isMobile && 'placeholder:text-xs'
               )}
               value={emailForm.email}
               onChange={(e) => setEmailForm({ ...emailForm, email: e.target.value })}
@@ -161,7 +167,8 @@ const ConnectPage = () => {
               'focus:outline-none focus:border-[#00b2ff]',
               'transition duration-300',
               'resize-none',
-              'text-sm sm:text-base'
+              'text-sm sm:text-base',
+              isMobile && 'placeholder:text-xs'
             )}
             value={emailForm.message}
             onChange={(e) => setEmailForm({ ...emailForm, message: e.target.value })}
@@ -184,14 +191,14 @@ const ConnectPage = () => {
         </form>
       </div>
 
-      <div className={tm('flex gap-4 sm:gap-6 mt-2', 'text-[#00b2ff]')}>
+      <div className={tm('flex sm:gap-6 mt-2', 'text-[#00b2ff]', isMobile ? 'gap-2' : 'gap-4')}>
         {socialLinks.map((link, index) => (
           <a
             key={index}
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={tm('transition-transform duration-300', 'hover:scale-125 hover:text-purple-500')}
+            className={tm('transition-transform duration-300', 'hover:scale-125 hover:text-purple-500 ')}
           >
             {link.icon}
           </a>
