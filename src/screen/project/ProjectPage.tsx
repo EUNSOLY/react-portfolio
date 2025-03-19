@@ -1,35 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { tm } from '../../utils/twMerge';
 import { ProjectType } from '../../utils/type';
-import { useIsMobile } from '../../utils/useIsMobile';
 import { IconBrandGithub, IconCirclesRelation } from '@tabler/icons-react';
 import styles from './style/projects.module.scss';
 import emptyImage from '../../assets/image/readyimageIcon.png';
 import { projectData } from '../../data/mock/mockupData';
 import Select from '../../components/ui/Select';
+import useWindowDimensions from '../../utils/useWindowDimensions';
 
 const ProjectPage = () => {
-  const isMobile = useIsMobile();
+  const { height, width, isMobile } = useWindowDimensions(768);
   const [projects, setProjects] = useState<ProjectType[]>([]);
   const [selectProject, setSelectProject] = useState<ProjectType | null>(null);
   const [isEllipsis, setIsEllipsis] = useState<boolean>(false);
   const descRef = useRef<HTMLParagraphElement | null>(null);
   const [isLongText, setIsLongText] = useState(false);
-
-  const [isProjetMobile, setIsProjectMobile] = useState<boolean>(false);
-
-  useEffect(() => {
-    const checkIsMobile = () => {
-      if (window.innerWidth <= 768) {
-        setIsProjectMobile(true);
-      } else {
-        setIsProjectMobile(false);
-      }
-    };
-    checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    return () => window.removeEventListener('resize', checkIsMobile);
-  }, []);
 
   useEffect(() => {
     setProjects(projectData);
@@ -40,6 +25,10 @@ const ProjectPage = () => {
   const changeProjectHandler = (project: ProjectType) => {
     setSelectProject(project);
   };
+
+  // useEffect(() => {
+  //   console.log(isMobile, '프로젝트');
+  // }, [isMobile]);
 
   // 글자 수가 두 줄 이상인지를 체크하는 함수
   // FIXME : 현재 넓이값 조정으로 디스크립션 엘리스 처리 하기
@@ -61,8 +50,8 @@ const ProjectPage = () => {
 
   return (
     <div className={tm(`${styles.projects}`)}>
-      <ul className={tm(`${styles['side-bar']}`)}>
-        {isMobile || isProjetMobile ? (
+      <ul className={tm(`${styles['side-bar']} `)}>
+        {isMobile ? (
           <Select<ProjectType>
             menuList={projects}
             setState={setSelectProject}
@@ -95,7 +84,7 @@ const ProjectPage = () => {
             />
           </div>
 
-          <p className={tm(`${styles['project-title']}`)}>{selectProject.title}</p>
+          <p className={tm(`${styles['project-title']} `)}>{selectProject.title}</p>
 
           <div className={tm(`${styles['link-con']}`)}>
             <a href={selectProject.githubLink} target="_blank">

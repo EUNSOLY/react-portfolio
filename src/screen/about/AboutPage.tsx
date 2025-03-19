@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import profileImage from '../../assets/image/profileImage.png';
+import profile from '../../assets/image/profile.jpeg';
 import { AboutDataType, certificateData, educationData, skillsData, toolsData } from '../../data/mock/mockupData';
 import { tm } from '../../utils/twMerge';
 import useWindowDimensions from '../../utils/useWindowDimensions';
@@ -19,18 +20,11 @@ import photoshopIcon from '../../assets/image/photoshopIcon.svg';
 import lllustratorIcon from '../../assets/image/llustratorIcon.svg';
 import figmaIcon from '../../assets/image/figmaIcon.svg';
 import githubIcon from '../../assets/image/githubIcon.svg';
+import dbeaver from '../../assets/image/dbeaver.svg';
 
 const AboutPage = () => {
   const divRef = useRef<HTMLDivElement | null>(null);
-  const { height, width } = useWindowDimensions();
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  useEffect(() => {
-    if (width <= 600) {
-      setIsMobile(true);
-    } else {
-      setIsMobile(false);
-    }
-  }, [width]);
+  const { height, width, isMobile } = useWindowDimensions();
 
   const skillIcons = {
     Javascript: javascriptIcon,
@@ -49,20 +43,8 @@ const AboutPage = () => {
     Lllustrator: lllustratorIcon,
     Figma: figmaIcon,
     Github: githubIcon,
+    DBeaver: dbeaver,
   };
-
-  const [selectSkillTitle, setSelectSkillTitle] = useState<string>('HTML');
-  const [selectSkill, setSelectSkill] = useState<AboutDataType>({ title: '', content: [], icon: '' });
-  const [selectToolTitle, setSelectToolTitle] = useState<string | null>(null);
-
-  useEffect(() => {
-    const temp: AboutDataType = skillsData.find((skill) => skill.title === selectSkillTitle) ?? {
-      title: '',
-      content: [],
-      icon: '',
-    };
-    setSelectSkill(temp);
-  }, [selectSkillTitle]);
 
   return (
     <div
@@ -70,15 +52,8 @@ const AboutPage = () => {
     >
       {/* Profile Section */}
       <div className={tm('flex flex-col md:flex-row items-center gap-8', 'mb-12', 'animate-fadeIn')}>
-        <div
-          className={tm(
-            'w-48 h-48 md:w-64 md:h-64',
-            'rounded-full overflow-hidden',
-            'border-4 border-pointColor',
-            'shadow-lg shadow-pointColor/20'
-          )}
-        >
-          <img src={profileImage} alt="profile" className="w-full h-full object-cover" />
+        <div className={tm('w-48 h-48 md:w-64 md:h-64', 'rounded-full overflow-hidden')}>
+          <img src={profile} alt="profile" className="w-full h-full object-cover object-[bottom_90%]" />
         </div>
 
         <div className={tm('flex-1', 'text-center md:text-left')}>
@@ -114,16 +89,19 @@ const AboutPage = () => {
                   'cursor-pointer',
                   'transition-all duration-300',
                   'group',
-                  selectSkillTitle === data.title && 'bg-pointColor/20'
+                  `min-w-[40px] min-h-[40px]`
                 )}
-                onMouseEnter={() => setSelectSkillTitle(data.title)}
               >
                 <img
                   src={skillIcons[data.title as keyof typeof skillIcons]}
                   alt={data.title}
-                  className="w-8 h-8 group-hover:scale-110 transition-transform duration-300"
+                  className={`w-8 h-8 group-hover:scale-110 transition-transform duration-300`}
                 />
-                <span className="text-xs text-gray-400 group-hover:text-pointColor">{data.title}</span>
+                {!isMobile && (
+                  <span className={`text-sm text-gray-400 group-${isMobile ? 'active:' : 'hover:'}:text-pointColor`}>
+                    {data.title}
+                  </span>
+                )}
               </div>
             ))}
           </div>
@@ -153,7 +131,11 @@ const AboutPage = () => {
                   alt={data.title}
                   className="w-8 h-8 group-hover:scale-110 transition-transform duration-300"
                 />
-                <span className="text-xs text-gray-400 group-hover:text-pointColor">{data.title}</span>
+                {!isMobile && (
+                  <span className={`text-sm text-gray-400 group-${isMobile ? 'active:' : 'hover:'}:text-pointColor`}>
+                    {data.title}
+                  </span>
+                )}
               </div>
             ))}
           </div>
