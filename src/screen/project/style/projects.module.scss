@@ -182,14 +182,18 @@
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 350px) {
     .content {
+      max-height: 480px;
+      overflow-y: scroll;
       .mokup-con {
         height: 200px;
+        height: 150px;
       }
 
       .project-title {
         font-size: 1.25rem;
+        font-size: 1rem;
       }
     }
   }
