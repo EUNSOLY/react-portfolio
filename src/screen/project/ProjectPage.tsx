@@ -26,10 +26,6 @@ const ProjectPage = () => {
     setSelectProject(project);
   };
 
-  // useEffect(() => {
-  //   console.log(isMobile, '프로젝트');
-  // }, [isMobile]);
-
   // 글자 수가 두 줄 이상인지를 체크하는 함수
   // FIXME : 현재 넓이값 조정으로 디스크립션 엘리스 처리 하기
   useEffect(() => {
@@ -95,22 +91,22 @@ const ProjectPage = () => {
             </a>
           </div>
 
-          <div className={tm(styles['desc-con'])}>
-            <p ref={descRef} className={tm(`${styles.desc}`, !isEllipsis ? '' : styles.full)}>
-              {selectProject.description}
-            </p>
-            {isLongText && (
-              <button onClick={() => setIsEllipsis(!isEllipsis)} className={tm(styles['text-btn'])}>
-                {!isEllipsis ? '더보기' : '간략히 보기'}
-              </button>
-            )}
-          </div>
+          {!isMobile && (
+            <div className={tm(styles['desc-con'])}>
+              <p ref={descRef} className={tm(`${styles.desc}`, !isEllipsis ? '' : styles.full)}>
+                {selectProject.description}
+              </p>
+              {isLongText && (
+                <button onClick={() => setIsEllipsis(!isEllipsis)} className={tm(styles['text-btn'])}>
+                  {!isEllipsis ? '더보기' : '간략히 보기'}
+                </button>
+              )}
+            </div>
+          )}
 
           <ul className={tm(`${styles['tech-con']}`)}>
             {selectProject.techs.map((tech: string) => (
-              <li key={tech} className={tm(``)}>
-                {tech}
-              </li>
+              <li key={tech}>{tech}</li>
             ))}
           </ul>
         </div>

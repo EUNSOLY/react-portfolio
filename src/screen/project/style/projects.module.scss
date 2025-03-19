@@ -171,13 +171,20 @@
         font-size: 1.5rem;
       }
 
-      .link-con a {
-        font-size: 1.25rem;
+      .link-con {
+        gap: 0.5rem;
+        a {
+          font-size: 1.25rem;
+        }
       }
 
-      .tech-con li {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
+      .tech-con {
+        gap: 0.5rem;
+        li {
+          padding: 0.2rem 0.8rem;
+          font-size: 0.75rem;
+          font-weight: bold;
+        }
       }
     }
   }
