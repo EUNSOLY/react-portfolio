@@ -15,14 +15,29 @@ const HomePage = () => {
 
   // INFO PDF 이력서 다운로드
   const onClickPDFDownload = async () => {
-    console.log('PDF 다운로드 작동');
-    const fileUrl = `${process.env.PUBLIC_URL}/eunsolResume.pdf`;
-    const link = document.createElement('a');
-    link.href = fileUrl;
-    link.download = '프론트엔드_이은솔이력서.pdf'; // 다운로드될 파일 이름
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    try {
+      const fileUrl = `${process.env.PUBLIC_URL}/eunsolResume.pdf`;
+
+      // fetch를 사용하여 파일을 blob으로 가져옵니다
+      const response = await fetch(fileUrl);
+      const blob = await response.blob();
+
+      // Blob URL 생성
+      const blobUrl = window.URL.createObjectURL(blob);
+
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = '프론트엔드_이은솔이력서.pdf'; // 원하는 파일명 지정
+
+      document.body.appendChild(link);
+      link.click();
+
+      // cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error('PDF 다운로드 중 오류 발생:', error);
+    }
   };
 
   const naviToProjects = () => {
