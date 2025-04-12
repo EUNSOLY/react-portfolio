@@ -7,14 +7,15 @@ import emptyImage from '../../assets/image/readyimageIcon.png';
 import { projectData } from '../../data/mock/mockupData';
 import Select from '../../components/ui/Select';
 import useWindowDimensions from '../../utils/useWindowDimensions';
-
+import projectRedadyImage from '../../assets/image/projectMake.png';
 const ProjectPage = () => {
   const { height, width, isMobile } = useWindowDimensions(768);
   const [projects, setProjects] = useState<ProjectType[]>([]);
   const [selectProject, setSelectProject] = useState<ProjectType | null>(null);
   const [isEllipsis, setIsEllipsis] = useState<boolean>(false);
   const descRef = useRef<HTMLParagraphElement | null>(null);
-  const [isLongText, setIsLongText] = useState(false);
+  const [isLongText, setIsLongText] = useState<boolean>(false);
+  const [isProject, setIsProject] = useState<boolean>(false);
 
   useEffect(() => {
     setProjects(projectData);
@@ -44,18 +45,21 @@ const ProjectPage = () => {
     };
   }, [selectProject?.description]);
 
+  const tempData = [
+    { title: '사이드 프로젝트', description: '', techs: [''], mockupImage: '', githubLink: '', liveLink: '' },
+  ];
   return (
     <div className={tm(`${styles.projects}`)}>
       <ul className={tm(`${styles['side-bar']} `)}>
         {isMobile ? (
           <Select<ProjectType>
-            menuList={projects}
+            menuList={isProject ? projects : tempData}
             setState={setSelectProject}
-            defaultValue={projects[0]}
+            defaultValue={isProject ? projects[0] : tempData[0]}
             getLabel={(project) => project.title} // ProjectType의 title을 label로 사용
             getValue={(project) => project.title} // ProjectType의 title을 value로 사용
           />
-        ) : (
+        ) : isProject ? (
           projects.map((project) => (
             <li
               key={project.title}
@@ -68,49 +72,60 @@ const ProjectPage = () => {
               {project.title}
             </li>
           ))
+        ) : (
+          <li className={tm(`${styles['side-menu']}`)}>신규 사이드 프로젝트</li>
         )}
       </ul>
 
-      {selectProject && (
-        <div className={tm(`${styles.content}`)}>
-          <div className={tm(`${styles['mokup-con']}`)}>
-            <img
-              src={selectProject.mockupImage !== '' ? selectProject.mockupImage : emptyImage}
-              alt={`${styles['project-mokup']}`}
-            />
-          </div>
-
-          <p className={tm(`${styles['project-title']} `)}>{selectProject.title}</p>
-
-          <div className={tm(`${styles['link-con']}`)}>
-            <a href={selectProject.githubLink} target="_blank">
-              <IconBrandGithub />
-            </a>
-            <a href={selectProject.liveLink} target="_blank">
-              <IconCirclesRelation />
-            </a>
-          </div>
-
-          {!isMobile && (
-            <div className={tm(styles['desc-con'])}>
-              <p ref={descRef} className={tm(`${styles.desc}`, !isEllipsis ? '' : styles.full)}>
-                {selectProject.description}
-              </p>
-              {isLongText && (
-                <button onClick={() => setIsEllipsis(!isEllipsis)} className={tm(styles['text-btn'])}>
-                  {!isEllipsis ? '더보기' : '간략히 보기'}
-                </button>
-              )}
+      {isProject ? (
+        selectProject && (
+          <div className={tm(`${styles.content}`)}>
+            <div className={tm(`${styles['mokup-con']}`)}>
+              <img
+                src={selectProject.mockupImage !== '' ? selectProject.mockupImage : emptyImage}
+                alt={`${styles['project-mokup']}`}
+              />
             </div>
-          )}
 
-          <ul className={tm(`${styles['tech-con']}`)}>
-            {selectProject.techs.map((tech: string) => (
-              <li key={tech}>{tech}</li>
-            ))}
-          </ul>
+            <p className={tm(`${styles['project-title']} `)}>{selectProject.title}</p>
+
+            <div className={tm(`${styles['link-con']}`)}>
+              <a href={selectProject.githubLink} target="_blank">
+                <IconBrandGithub />
+              </a>
+              <a href={selectProject.liveLink} target="_blank">
+                <IconCirclesRelation />
+              </a>
+            </div>
+
+            {!isMobile && (
+              <div className={tm(styles['desc-con'])}>
+                <p ref={descRef} className={tm(`${styles.desc}`, !isEllipsis ? '' : styles.full)}>
+                  {selectProject.description}
+                </p>
+                {isLongText && (
+                  <button onClick={() => setIsEllipsis(!isEllipsis)} className={tm(styles['text-btn'])}>
+                    {!isEllipsis ? '더보기' : '간략히 보기'}
+                  </button>
+                )}
+              </div>
+            )}
+
+            <ul className={tm(`${styles['tech-con']}`)}>
+              {selectProject.techs.map((tech: string) => (
+                <li key={tech}>{tech}</li>
+              ))}
+            </ul>
+          </div>
+        )
+      ) : (
+        <div className={`${tm(`${styles['test']}`)}`}>
+          <img src={projectRedadyImage} alt="project" />
+          <p>신규 사이드프로젝트 준비 중입니다</p>
         </div>
       )}
+
+      {}
     </div>
   );
 };

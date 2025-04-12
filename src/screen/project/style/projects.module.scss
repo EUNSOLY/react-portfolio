@@ -204,4 +204,23 @@
       }
     }
   }
+  .test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    flex-wrap: wrap;
+    > img {
+      width: 50%;
+      min-width: 200px;
+    }
+    > p {
+      width: 100%;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+  }
+
+  // 프로젝트 준비 중
 }
