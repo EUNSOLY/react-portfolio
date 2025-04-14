@@ -1,5 +1,5 @@
 import { ProjectType } from '../../utils/type';
-
+import projectRedadyImage from '../../assets/image/projectMake.png';
 export interface AboutDataType {
   title: string;
   icon: string;
@@ -133,47 +133,11 @@ export const certificateData = [
 
 export const projectData: ProjectType[] = [
   {
-    title: 'PDF 전자서명 사이트',
+    title: 'PDF 전자서명 사이트(가제)',
     description: '모두의 싸인을 모티브로한 간단한 전자서명 사이트',
-    techs: ['Next', 'TypeScript', 'Tailwind', 'Redux', 'Vercel'],
-    mockupImage: 'https://blog.kakaocdn.net/dn/bh3xaW/btrd04olbd6/HkQMeUpJsB6D3GcVdXfrc1/img.jpg',
-    githubLink: '',
-    liveLink: '',
-  },
-  {
-    title: '시각화 대시보드',
-    description: '',
-    techs: ['React', 'TypeScript', 'Echart'],
-    mockupImage:
-      'https://img1.daumcdn.net/thumb/R1280x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/32E9/image/BA2Qyx3O2oTyEOsXe2ZtE8cRqGk.JPG',
-    githubLink: '',
-    liveLink: '',
-  },
-  {
-    title: '개인 포트폴리오사이트',
-    description:
-      '기존에 바닐라자바스크립트로 작성 된 포트폴리오를 리액트를 사용하여 디벨롭한 개인 포트폴리오 사이트입니다.',
-    techs: ['React', 'TypeScript', 'Tailwind', 'SCSS'],
-    mockupImage: '',
-    githubLink: '',
-    liveLink: '',
-  },
-  {
-    title: '영화 검색사이트',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisl tincidunt eget nullam non. Quis hendrerit dolor magna eget est lorem ipsum dolor sit',
-    techs: ['OMDb API', 'TypeScript', 'HTML', 'CSS'],
-    mockupImage:
-      'https://media.istockphoto.com/id/1482199015/ko/%EC%82%AC%EC%A7%84/%ED%96%89%EB%B3%B5%ED%95%9C-%EA%B0%95%EC%95%84%EC%A7%80-%EC%9B%A8%EC%9D%BC%EC%8A%A4-%EC%96%B4-%EC%BD%94%EA%B8%B0-14-%EC%A3%BC%EB%A0%B9-%EA%B0%9C%EA%B0%80-%EC%9C%99%ED%81%AC%ED%95%98%EA%B3%A0-%ED%97%90%EB%96%A1%EC%9D%B4%EA%B3%A0-%ED%9D%B0%EC%83%89%EC%97%90-%EA%B3%A0%EB%A6%BD%EB%90%98%EC%96%B4-%EC%95%89%EC%95%84-%EC%9E%88%EC%8A%B5%EB%8B%88%EB%8B%A4.jpg?s=612x612&w=0&k=20&c=vW29tbABUS2fEJvPi8gopZupfTKErCDMfeq5rrOaAME=',
-    githubLink: '',
-    liveLink: 'https://movie-app-eunsoly.vercel.app/#/',
-  },
-  {
-    title: '디즈니 클론코딩프로젝트',
-    description: '설명',
-    techs: ['React', 'LocalStorage', 'Swiper', 'Axios', 'StyledComponent', 'fireBase'],
-    mockupImage: 'https://cdn.imweb.me/upload/S201910012ff964777e0e3/62f9a36ea3cea.jpg',
-    githubLink: '',
-    liveLink: '',
+    techs: ['Next', 'TypeScript', 'Tailwind', 'Redux'],
+    mockupImage: projectRedadyImage,
+    githubLink: '#none',
+    liveLink: '#none',
   },
 ];

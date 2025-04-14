@@ -19,11 +19,15 @@ const HomePage = () => {
       const fileUrl = `${process.env.PUBLIC_URL}/eunsolResume.pdf`;
 
       // fetch를 사용하여 파일을 blob으로 가져옵니다
+      console.log(fileUrl, 'fileUrl');
       const response = await fetch(fileUrl);
+      console.log(response, 'response');
       const blob = await response.blob();
+      console.log(blob, 'blob');
 
       // Blob URL 생성
       const blobUrl = window.URL.createObjectURL(blob);
+      console.log(blobUrl, 'blobUrl');
 
       const link = document.createElement('a');
       link.href = blobUrl;
