@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { tm } from '../../utils/twMerge';
 import useNavigation from '../../router/hooks/useNavigation';
 import { useAppDispatch } from '../../utils/store';
@@ -19,7 +18,6 @@ const HomePage = () => {
       const fileUrl = `${process.env.PUBLIC_URL}/eunsolResume.pdf`;
 
       // fetch를 사용하여 파일을 blob으로 가져옵니다
-      console.log(fileUrl, 'fileUrl');
       const response = await fetch(fileUrl);
       console.log(response, 'response');
       const blob = await response.blob();
@@ -83,7 +81,7 @@ const HomePage = () => {
             Front Developer
           </h2>
 
-          <div className={tm('space-y-2 sm:space-y-3', 'cursor-pointer', 'transition-all duration-300')}>
+          <div className={tm('space-y-2 sm:space-y-3', 'transition-all duration-300')}>
             <p
               className={tm('text-base sm:text-xl md:text-4xl ', 'font-semibold', isMobile && ' text-sm')}
               style={{
@@ -129,14 +127,6 @@ const HomePage = () => {
             프로젝트 보기
           </Button>
         </div>
-      </div>
-
-      {/* Bottom Arrow */}
-      <div
-        className={tm('absolute bottom-8', 'animate-bounce cursor-pointer', 'transition-all duration-300')}
-        onClick={() => navi.naviToAbout()}
-      >
-        <IconChevronDown className={tm('w-6 h-6 sm:w-8 sm:h-8', 'text-gray-400 hover:text-white')} />
       </div>
     </div>
   );

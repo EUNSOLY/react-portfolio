@@ -40,12 +40,10 @@ const ConnectPage = () => {
           alert('소중한 제안 감사합니다! 빠르게 연락드리겠습니다.');
         },
         (error) => {
-          console.log('에러', error.text);
+          console.log('에러', error);
+          alert('통신 오류가 발생하여 이메일 발송에 실패했습니다 죄송합니다.');
         }
       );
-    // NOTE : 메일창 생성
-    // const mailtoLink = `mailto:dmsthf9596@gmail.com?subject=Contact from ${emailForm.name}&body=${emailForm.message}%0D%0A%0D%0AFrom: ${emailForm.email}`;
-    // window.location.href = mailtoLink;
   };
 
   const contactInfo = [
@@ -121,7 +119,7 @@ const ConnectPage = () => {
             <input
               type="text"
               name="from_name"
-              placeholder="당사의 이름을 입력해주세요"
+              placeholder="회사명을 입력해 주세요."
               className={tm(
                 'w-full p-2 sm:p-3 rounded-lg',
                 'bg-white/10',
@@ -139,7 +137,7 @@ const ConnectPage = () => {
             <input
               type="email"
               name="from_email"
-              placeholder="당사의 메일을 입력해주세요"
+              placeholder="답변을 받을 이메일을 입력해 주세요."
               className={tm(
                 'w-full p-2 sm:p-3 rounded-lg',
                 'bg-white/10',
