@@ -1,20 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { tm } from '../../utils/twMerge';
-import {
-  IconMail,
-  IconBrandGithub,
-  IconBrandLinkedin,
-  IconMapPin,
-  IconBrandDiscord,
-  IconSend,
-  IconSchool,
-} from '@tabler/icons-react';
+import { IconMail, IconBrandGithub, IconMapPin, IconSend, IconSchool } from '@tabler/icons-react';
 import emailjs from '@emailjs/browser';
 import useWindowDimensions from '../../utils/useWindowDimensions';
 const ConnectPage = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const { height, width, isMobile } = useWindowDimensions();
-  const [emailForm, setEmailForm] = useState({
+  const { isMobile } = useWindowDimensions();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [emailForm, setEmailForm] = useState<{ name: string; email: string; message: string }>({
     name: '',
     email: '',
     message: '',
@@ -22,6 +15,7 @@ const ConnectPage = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     if (!formRef.current) {
       console.error('formRef가 존재하지 않습니다.');
       return;
@@ -38,10 +32,12 @@ const ConnectPage = () => {
         (result) => {
           console.log('결과', result.text);
           alert('소중한 제안 감사합니다! 빠르게 연락드리겠습니다.');
+          setIsLoading(false);
         },
         (error) => {
           console.log('에러', error);
           alert('통신 오류가 발생하여 이메일 발송에 실패했습니다 죄송합니다.');
+          setIsLoading(false);
         }
       );
   };
@@ -183,8 +179,8 @@ const ConnectPage = () => {
               'text-sm sm:text-base'
             )}
           >
-            <IconSend className="w-4 h-4 sm:w-5 sm:h-5" />
-            전송
+            {!isLoading && <IconSend className="w-4 h-4 sm:w-5 sm:h-5" />}
+            {isLoading ? '이메일 전송 중 입니다..' : '전송'}
           </button>
         </form>
       </div>
