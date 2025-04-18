@@ -1,5 +1,7 @@
 import { ProjectType } from '../../utils/type';
-import projectRedadyImage from '../../assets/image/projectMake.png';
+import PROJECTEMPY from '../../assets/image/readyImage.jpg';
+import OMDBMOCKUP from '../../assets/image/OMDBMOCKUP.jpg';
+import PORTFOLIOMOCKUP from '../../assets/image/portFolioMockup.jpg';
 export interface AboutDataType {
   title: string;
   icon: string;
@@ -86,11 +88,6 @@ export const skillsData: AboutDataType[] = [
       'RTK Query를 사용해 API 요청 상태를 쉽게 처리했습니다.',
     ],
   },
-  // {
-  //   title: 'Git',
-  //   icon: '',
-  //   content: [],
-  // },
 ];
 
 export const toolsData: AboutDataType[] = [
@@ -133,10 +130,36 @@ export const certificateData = [
 
 export const projectData: ProjectType[] = [
   {
+    title: '개인 포트폴리오 사이트',
+    description: '기존 Vanilla Jabascript로 만들어진 개인 포트폴리오 사이트를 React를 사용하여 제작하였습니다.',
+    techs: ['React', 'TypeScript', 'TSX', 'Tailwind', 'Redux Toolkit', 'SCSS'],
+    mockupImage: PORTFOLIOMOCKUP,
+    githubLink: 'https://github.com/EUNSOLY/react-portfolio',
+    liveLink: 'https://portfolio-ranz17aiz-eunsolys-projects.vercel.app/',
+  },
+  {
+    title: 'OMDBAPI.COM',
+    description:
+      'Vanilla JS 기반의 영화 검색 사이트로, Class형 컴포넌트 구조로 설계 및 구현하였습니다. OMDB 오픈 API를 활용해 실시간으로 해외 영화를 검색할 수 있으며, Parcel 번들러를 통해 프로젝트를 구성하고 Vercel을 통해 배포하였습니다.',
+    techs: ['HTML', 'CSS', 'TypeScript', 'parcel', 'vercel'],
+    mockupImage: OMDBMOCKUP,
+    githubLink: 'https://github.com/EUNSOLY/vanillajs-movie-app',
+    liveLink: 'https://movie-app-eunsoly.vercel.app/#/',
+  },
+  {
+    title: 'DisneyPlus[클론코딩]',
+    description:
+      'DisneyPlus를 클론코딩한 프로젝트로, 실사용 가능한 UI 및 기능을 구현하였습니다. Firebase를 활용한 구글 로그인 기능을 포함해 사용자 인증을 구현하였고, 영화 및 시리즈 데이터를 Swiper로 슬라이드 형식으로 보여줍니다. Styled Component를 활용한 컴포넌트 스타일링과 Redux Toolkit을 통한 상태 관리를 적용하였습니다.',
+    techs: ['React', 'JavaScript', 'Styled Component', 'Swiper', 'FireBase', 'Redux Toolkit'],
+    mockupImage: 'https://github.com/EUNSOLY/React_DisneyPlus/blob/main/public/images/ReadmeImage/image.png?raw=true',
+    githubLink: 'https://github.com/EUNSOLY/React_DisneyPlus',
+    liveLink: 'https://react-disney-plus-app-ab04b.firebaseapp.com/main',
+  },
+  {
     title: 'PDF 전자서명 사이트(가제)',
-    description: '모두의 싸인을 모티브로한 간단한 전자서명 사이트',
-    techs: ['Next', 'TypeScript', 'Tailwind', 'Redux'],
-    mockupImage: projectRedadyImage,
+    description: '모두의 싸인을 모티브로한 간단한 전자서명 사이트 제작 예정 입니다.',
+    techs: ['Nextjs', 'TypeScript', 'TSX', 'Tailwind', 'SCSS'],
+    mockupImage: PROJECTEMPY,
     githubLink: '#none',
     liveLink: '#none',
   },
