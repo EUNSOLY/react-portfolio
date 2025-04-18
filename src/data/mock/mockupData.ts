@@ -131,7 +131,8 @@ export const certificateData = [
 export const projectData: ProjectType[] = [
   {
     title: '개인 포트폴리오 사이트',
-    description: '기존 Vanilla Jabascript로 만들어진 개인 포트폴리오 사이트를 React를 사용하여 제작하였습니다.',
+    description:
+      '기존에 Vanilla JavaScript로 제작했던 포트폴리오 사이트를 React와 TypeScript 기반으로 리뉴얼하였습니다. Tailwind CSS와 SCSS를 조합해 빠르고 일관된 스타일링을 적용하고, Redux Toolkit을 통해 상태 관리를 효율적으로 처리하였습니다. 정적 사이트로 구성하여 Vercel을 통해 배포하였습니다.',
     techs: ['React', 'TypeScript', 'TSX', 'Tailwind', 'Redux Toolkit', 'SCSS'],
     mockupImage: PORTFOLIOMOCKUP,
     githubLink: 'https://github.com/EUNSOLY/react-portfolio',
