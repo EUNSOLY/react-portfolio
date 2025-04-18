@@ -136,7 +136,7 @@ export const projectData: ProjectType[] = [
     techs: ['React', 'TypeScript', 'TSX', 'Tailwind', 'Redux Toolkit', 'SCSS'],
     mockupImage: PORTFOLIOMOCKUP,
     githubLink: 'https://github.com/EUNSOLY/react-portfolio',
-    liveLink: 'https://portfolio-ranz17aiz-eunsolys-projects.vercel.app/',
+    liveLink: 'https://portfolio-silk-ten-50.vercel.app/',
   },
   {
     title: 'OMDBAPI.COM',
