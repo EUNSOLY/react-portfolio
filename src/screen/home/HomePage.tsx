@@ -98,17 +98,17 @@ const HomePage = () => {
         <div
           className={tm('flex flex-col sm:flex-row', 'gap-3 sm:gap-4', 'justify-center items-center', 'mt-6 sm:mt-8')}
         >
+          {/* 'my-auto' // 수직 가운데 정렬 */}
           <Button
             onClick={onClickPDFDownload}
             className={tm(
-              'w-full sm:w-auto',
+              'w-full sm:w-auto max-sx:w-[140px]',
               'px-4 py-2 sm:px-6 sm:py-3',
               'text-sm sm:text-base',
               'flex items-center justify-center gap-2',
               isMobile && ' text-xs'
             )}
           >
-            {/* 'my-auto' // 수직 가운데 정렬 */}
             <IconFileDownload className={tm(`w-4 h-4 sm:w-5 sm:h-5`)} />
             이력서 다운로드
           </Button>
@@ -116,7 +116,7 @@ const HomePage = () => {
           <Button
             onClick={naviToProjects}
             className={tm(
-              'w-full sm:w-auto',
+              'w-full sm:w-auto max-sx:w-[140px]',
               'px-4 py-2 sm:px-6 sm:py-3',
               'text-sm sm:text-base',
               'bg-purple-600 hover:bg-purple-700',
@@ -124,7 +124,7 @@ const HomePage = () => {
               isMobile && ' text-xs'
             )}
           >
-            프로젝트 보기
+            PROJECTS 바로가기
           </Button>
         </div>
       </div>

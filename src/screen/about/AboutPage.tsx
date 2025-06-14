@@ -1,4 +1,4 @@
-import { certificateData, educationData, skillsData, toolsData } from '../../data/mock/mockupData';
+import { certificateData, educationData, skillsData, toolsData } from '../../data/portfolioData/aboutData';
 import { tm } from '../../utils/twMerge';
 import profile from '../../assets/image/profile.jpeg';
 import useWindowDimensions from '../../utils/useWindowDimensions';

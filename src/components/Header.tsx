@@ -24,7 +24,7 @@ const Header = () => {
 
   return (
     <div className={tm(`flex flex-wrap items-center justify-between h-[50px] gap-2 ${width <= 330 && 'mt-2'}`)}>
-      <h1 className={tm('min-w-10 w-16')}>
+      <h1 className={tm('min-w-10 w-16 cursor-pointer')} onClick={() => navi.naviToMain()}>
         <img src={logo} alt="logo" />
       </h1>
       <nav className={tm(``)}>

@@ -4,7 +4,7 @@ import { ProjectType } from '../../utils/type';
 import { IconBrandGithub, IconCirclesRelation } from '@tabler/icons-react';
 import styles from './style/projects.module.scss';
 import emptyImage from '../../assets/image/readyimageIcon.png';
-import { projectData } from '../../data/mock/mockupData';
+import { projectData } from '../../data/portfolioData/aboutData';
 import Select from '../../components/ui/Select';
 import useWindowDimensions from '../../utils/useWindowDimensions';
 
