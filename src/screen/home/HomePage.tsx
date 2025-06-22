@@ -14,8 +14,7 @@ const HomePage = () => {
 
   // INFO PDF 이력서 다운로드
   const onClickPDFDownload = async () => {
-    console.log(process.env.PUBLIC_URL, 'process.env.PUBLIC_URL');
-    const fileUrl = `/eunsolResume.pdf`;
+    const fileUrl = `/프론트엔드_이은솔이력서.pdf`;
 
     const link = document.createElement('a');
     link.href = fileUrl;
