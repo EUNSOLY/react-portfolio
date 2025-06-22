@@ -73,7 +73,7 @@ const ProjectPage = () => {
         <div
           className={tm(`${styles.content}`)}
           style={{
-            overflowY: isShowText ? 'scroll' : 'hidden',
+            overflowY: 'scroll',
           }}
         >
           <div className={tm(`${styles['mokup-con']}`)}>
@@ -106,7 +106,7 @@ const ProjectPage = () => {
             <div
               className={tm(styles['desc-con'])}
               style={{
-                maxHeight: isShowText ? 'none' : '190px',
+                maxHeight: isShowText ? 'none' : '50px',
                 overflowY: 'hidden',
               }}
             >
