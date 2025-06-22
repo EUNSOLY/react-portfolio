@@ -6,6 +6,7 @@
   padding: 1rem;
   gap: 1rem;
   user-select: none;
+
   // 미디어 쿼리 추가
 
   .side-bar {
@@ -46,6 +47,8 @@
     gap: 1.5rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 80vh;
+    overflow: hidden;
     .mokup-con {
       max-width: 800px;
       height: auto;
@@ -90,27 +93,35 @@
       }
     }
 
-    .desc-con {
-      .desc {
-        font-size: 1rem;
-        overflow: hidden;
-        max-width: 880px;
-      }
-
-      button {
-        background: none;
-        color: #00b2ff;
-        border: none;
-        font-size: 0.9rem;
-        cursor: pointer;
-        padding: 0;
-        margin-top: 10px;
-        text-decoration: underline;
-        transition: color 0.3s ease;
-
-        &:hover {
-          color: #007acc;
+    > div {
+      .desc-con {
+        .desc {
+          font-size: 1rem;
+          overflow: hidden;
+          max-width: 880px;
+          line-height: 1.5;
+          letter-spacing: -0.7px;
         }
+
+        button {
+          background: none;
+          color: #00b2ff;
+          border: none;
+          font-size: 0.9rem;
+          cursor: pointer;
+          padding: 0;
+          margin-top: 10px;
+          text-decoration: underline;
+          transition: color 0.3s ease;
+          &:hover {
+            color: #007acc;
+          }
+        }
+      }
+      .more {
+        color: #eaeaea;
+        display: flex;
+        text-decoration-line: underline;
       }
     }
 

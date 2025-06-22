@@ -10,10 +10,14 @@ import useWindowDimensions from '../../utils/useWindowDimensions';
 import { projectData } from '../../data/portfolioData/projectsData';
 
 const ProjectPage = () => {
-  const { isMobile } = useWindowDimensions(768);
+  const { isMobile } = useWindowDimensions();
   const [projects, setProjects] = useState<ProjectType[]>([]);
   const [selectProject, setSelectProject] = useState<ProjectType | null>(null);
+  const textRef = useRef<HTMLDivElement | null>(null); // 실제 text 높이 계산을 위한 Ref
+  const [isMoreView, setIsMoreView] = useState<boolean>(false); // 더보기 버튼의 여부
+  const [isShowText, setIsShowText] = useState<boolean>(false); // 내용이 더 보여지고, 접기 버튼의 여부
 
+  // 외부 호출 프로젝트 현재 페이지의 변수에서 상태관리
   useEffect(() => {
     setProjects(projectData);
     setSelectProject(projectData[0]);
@@ -22,6 +26,20 @@ const ProjectPage = () => {
   // 프로젝트 변경 핸들러
   const changeProjectHandler = (project: ProjectType) => {
     setSelectProject(project);
+  };
+
+  // 높이가 200px 이상이라면 더보기 버튼 노출
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      if (!textRef.current) return;
+      const contentHeight = textRef.current.clientHeight;
+      setIsMoreView(contentHeight > 200);
+    });
+  }, [isMobile, selectProject]);
+
+  // 더비고 접기 버튼 클릭
+  const onClickMoreDesc = () => {
+    setIsShowText((s) => !s);
   };
 
   return (
@@ -52,7 +70,12 @@ const ProjectPage = () => {
       </ul>
 
       {selectProject && (
-        <div className={tm(`${styles.content}`)}>
+        <div
+          className={tm(`${styles.content}`)}
+          style={{
+            overflowY: isShowText ? 'scroll' : 'hidden',
+          }}
+        >
           <div className={tm(`${styles['mokup-con']}`)}>
             <img
               src={selectProject.mockupImage !== '' ? selectProject.mockupImage : emptyImage}
@@ -79,8 +102,23 @@ const ProjectPage = () => {
             </a>
           </div>
 
-          <div className={tm(styles['desc-con'])}>
-            <p className={tm(`${styles.desc}`)}>{selectProject.description}</p>
+          <div>
+            <div
+              className={tm(styles['desc-con'])}
+              style={{
+                maxHeight: isShowText ? 'none' : '190px',
+                overflowY: 'hidden',
+              }}
+            >
+              <p className={tm(styles.desc)} ref={textRef}>
+                {selectProject.description}
+              </p>
+            </div>
+            {isMoreView && (
+              <p className={tm(styles.more)} onClick={onClickMoreDesc}>
+                {isShowText ? '접기' : '...더보기'}
+              </p>
+            )}
           </div>
 
           <ul className={tm(`${styles['tech-con']}`)}>
