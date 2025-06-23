@@ -34,6 +34,9 @@ const ProjectPage = () => {
       if (!textRef.current) return;
       const contentHeight = textRef.current.clientHeight;
       setIsMoreView(contentHeight > 200);
+      if (contentHeight > 200) {
+        setIsShowText(false);
+      }
     });
   }, [isMobile, selectProject]);
 
@@ -106,7 +109,7 @@ const ProjectPage = () => {
             <div
               className={tm(styles['desc-con'])}
               style={{
-                maxHeight: isShowText ? 'none' : '50px',
+                maxHeight: !isMobile ? 'none' : isShowText ? 'none' : '50px',
                 overflowY: 'hidden',
               }}
             >
